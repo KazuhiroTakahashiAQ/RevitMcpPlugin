@@ -175,46 +175,10 @@ public sealed class RevitMcpRuntimeTests
         var logger = NullAuditLogger.Instance;
         var runtime = RevitMcpRuntime.CreateDefault(dispatcher, settings, logger);
 
-        document = CreateDocument();
+        document = InMemorySampleProjectFactory.CreateDefault();
         var application = new InMemoryRevitApplicationContext(document);
         dispatcher.Bind(ct => runtime.ExecutionService.DrainAsync(application, ct));
 
         return runtime;
-    }
-
-    private static InMemoryRevitDocumentContext CreateDocument()
-    {
-        var wall = new InMemoryRevitElement(
-            id: 1001,
-            uniqueId: "wall-1001",
-            category: "OST_Walls",
-            name: "Basic Wall: Generic - 200mm",
-            parameters: new[]
-            {
-                new InMemoryRevitParameter("Comments", RevitMcp.Core.Revit.ParameterStorageType.String, false, "Initial"),
-                new InMemoryRevitParameter("Mark", RevitMcp.Core.Revit.ParameterStorageType.String, false, "W-01")
-            });
-
-        var door = new InMemoryRevitElement(
-            id: 2001,
-            uniqueId: "door-2001",
-            category: "OST_Doors",
-            name: "Single Flush",
-            parameters: new[]
-            {
-                new InMemoryRevitParameter("Comments", RevitMcp.Core.Revit.ParameterStorageType.String, false, "Door")
-            });
-
-        var document = new InMemoryRevitDocumentContext(
-            title: "SampleProject.rvt",
-            path: "/tmp/SampleProject.rvt",
-            isFamilyDocument: false,
-            isModified: true,
-            isWorkshared: true,
-            activeView: new InMemoryRevitView(101, "Level 1", "FloorPlan"),
-            elements: new[] { wall, door });
-
-        document.Select(1001, 2001);
-        return document;
     }
 }

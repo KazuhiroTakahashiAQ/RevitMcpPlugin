@@ -1,0 +1,51 @@
+{
+  "document": {
+    "title": "SampleProject.rvt",
+    "path": "C:/Projects/SampleProject.rvt",
+    "isFamilyDocument": false,
+    "isModified": true,
+    "isWorkshared": true,
+    "activeView": {
+      "id": 101,
+      "name": "Level 1",
+      "viewType": "FloorPlan"
+    }
+  },
+  "selectedElementIds": [1001, 2001],
+  "elements": [
+    {
+      "id": 1001,
+      "uniqueId": "wall-1001",
+      "category": "OST_Walls",
+      "name": "Basic Wall: Generic - 200mm",
+      "parameters": [
+        {
+          "name": "Comments",
+          "storageType": "String",
+          "isReadOnly": false,
+          "value": "Initial"
+        },
+        {
+          "name": "Mark",
+          "storageType": "String",
+          "isReadOnly": false,
+          "value": "W-01"
+        }
+      ]
+    },
+    {
+      "id": 2001,
+      "uniqueId": "door-2001",
+      "category": "OST_Doors",
+      "name": "Single Flush",
+      "parameters": [
+        {
+          "name": "Comments",
+          "storageType": "String",
+          "isReadOnly": false,
+          "value": "Door"
+        }
+      ]
+    }
+  ]
+}
