@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Revit MCP</Name>
+    <Assembly>{{ASSEMBLY_PATH}}</Assembly>
+    <AddInId>4D6A84A1-59C1-4F6F-9CE8-4B2154E0E19B</AddInId>
+    <FullClassName>RevitMcp.Addin.App</FullClassName>
+    <VendorId>AQST</VendorId>
+    <VendorDescription>AsiaQuest</VendorDescription>
+  </AddIn>
+</RevitAddIns>

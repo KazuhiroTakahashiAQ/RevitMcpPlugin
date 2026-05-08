@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\RevitMcp.Core\RevitMcp.Core.csproj" />
     <ProjectReference Include="..\..\src\RevitMcp.RevitAdapter\RevitMcp.RevitAdapter.csproj" />
+    <ProjectReference Include="..\..\src\RevitMcp.Server\RevitMcp.Server.csproj" />
   </ItemGroup>
 
 </Project>
