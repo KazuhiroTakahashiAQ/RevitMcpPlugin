@@ -177,7 +177,11 @@ public sealed class RevitMcpRuntimeTests
 
         document = InMemorySampleProjectFactory.CreateDefault();
         var application = new InMemoryRevitApplicationContext(document);
-        dispatcher.Bind(ct => runtime.ExecutionService.DrainAsync(application, ct));
+        dispatcher.Bind(ct =>
+        {
+            runtime.ExecutionService.Drain(application, ct);
+            return Task.CompletedTask;
+        });
 
         return runtime;
     }

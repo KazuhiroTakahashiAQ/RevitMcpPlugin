@@ -71,7 +71,11 @@ public sealed class RemoteMcpClientTests
         var dispatcher = new ImmediateExternalEventDispatcher();
         var runtime = RevitMcpRuntime.CreateDefault(dispatcher, settings, NullAuditLogger.Instance);
         var application = new InMemoryRevitApplicationContext(InMemorySampleProjectFactory.CreateDefault());
-        dispatcher.Bind(ct => runtime.ExecutionService.DrainAsync(application, ct));
+        dispatcher.Bind(ct =>
+        {
+            runtime.ExecutionService.Drain(application, ct);
+            return Task.CompletedTask;
+        });
         return runtime;
     }
 
