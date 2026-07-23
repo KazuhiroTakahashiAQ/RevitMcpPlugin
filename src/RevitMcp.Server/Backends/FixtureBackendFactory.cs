@@ -22,7 +22,11 @@ public static class FixtureBackendFactory
         var application = new InMemoryRevitApplicationContext(document);
         var dispatcher = new ImmediateExternalEventDispatcher();
         var runtime = RevitMcpRuntime.CreateDefault(dispatcher, new RevitMcpSettings(), logger);
-        dispatcher.Bind(ct => runtime.ExecutionService.DrainAsync(application, ct));
+        dispatcher.Bind(ct =>
+        {
+            runtime.ExecutionService.Drain(application, ct);
+            return Task.CompletedTask;
+        });
 
         return new FixtureToolExecutionBackend(runtime, mapper);
     }

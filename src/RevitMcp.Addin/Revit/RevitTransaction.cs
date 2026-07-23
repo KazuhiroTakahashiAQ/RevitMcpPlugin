@@ -6,6 +6,7 @@ namespace RevitMcp.Addin.Revit;
 public sealed class RevitTransaction : IRevitTransaction
 {
     private readonly Transaction _transaction;
+    private bool _finished;
 
     public RevitTransaction(Document document, string name)
     {
@@ -15,7 +16,13 @@ public sealed class RevitTransaction : IRevitTransaction
 
     public void Commit()
     {
+        if (_finished)
+        {
+            return;
+        }
+
         _transaction.Commit();
+        _finished = true;
     }
 
     public void Dispose()
@@ -25,6 +32,12 @@ public sealed class RevitTransaction : IRevitTransaction
 
     public void RollBack()
     {
+        if (_finished)
+        {
+            return;
+        }
+
         _transaction.RollBack();
+        _finished = true;
     }
 }

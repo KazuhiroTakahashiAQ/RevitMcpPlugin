@@ -64,7 +64,7 @@ public sealed class RevitExecutionService
         }
     }
 
-    public Task DrainAsync(IRevitApplicationContext applicationContext, CancellationToken cancellationToken = default)
+    public void Drain(IRevitApplicationContext applicationContext, CancellationToken cancellationToken = default)
     {
         _dispatcher.OnExecuteStarted();
 
@@ -120,8 +120,6 @@ public sealed class RevitExecutionService
         {
             _dispatcher.OnExecuteCompleted(!_queue.IsEmpty);
         }
-
-        return Task.CompletedTask;
     }
 
     private McpToolResult ExecuteRequest(IRevitApplicationContext applicationContext, RevitApiRequest request, CancellationToken cancellationToken)

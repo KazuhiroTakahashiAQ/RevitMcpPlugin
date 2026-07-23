@@ -17,6 +17,11 @@ public sealed class InMemoryRevitTransaction : IRevitTransaction
 
     public void Commit()
     {
+        if (IsCommitted || IsRolledBack)
+        {
+            return;
+        }
+
         IsCommitted = true;
     }
 
@@ -26,6 +31,11 @@ public sealed class InMemoryRevitTransaction : IRevitTransaction
 
     public void RollBack()
     {
+        if (IsCommitted || IsRolledBack)
+        {
+            return;
+        }
+
         IsRolledBack = true;
     }
 }

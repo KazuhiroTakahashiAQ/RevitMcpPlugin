@@ -34,6 +34,13 @@ public static class RevitAddinHost
             }
 
             var settings = new RevitMcpSettings();
+            var validationErrors = settings.Validate();
+            if (validationErrors.Count > 0)
+            {
+                throw new InvalidOperationException(
+                    $"Invalid Revit MCP settings: {string.Join(" ", validationErrors)}");
+            }
+
             var logger = new FileAuditLogger(GetLogDirectory());
             var handler = new RevitExternalEventHandler();
             var externalEvent = ExternalEvent.Create(handler);

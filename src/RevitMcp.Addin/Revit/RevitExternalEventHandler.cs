@@ -20,7 +20,7 @@ public sealed class RevitExternalEventHandler : IExternalEventHandler
         }
 
         var applicationContext = new RevitApplicationContext(app);
-        _executionService.DrainAsync(applicationContext, CancellationToken.None).GetAwaiter().GetResult();
+        _executionService.Drain(applicationContext, CancellationToken.None);
     }
 
     public string GetName() => "Revit MCP External Event Handler";

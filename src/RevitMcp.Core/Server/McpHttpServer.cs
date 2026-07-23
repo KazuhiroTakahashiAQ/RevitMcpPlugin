@@ -124,15 +124,18 @@ public sealed class McpHttpServer : IAsyncDisposable
 
             context.Response.Close();
         }
-        catch
+        catch (Exception ex)
         {
+            Console.Error.WriteLine($"[RevitMcp] Unhandled exception while handling request: {ex}");
+
             try
             {
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 context.Response.Close();
             }
-            catch
+            catch (Exception closeEx)
             {
+                Console.Error.WriteLine($"[RevitMcp] Failed to close response after error: {closeEx}");
             }
         }
     }
